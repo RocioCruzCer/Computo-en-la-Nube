@@ -670,7 +670,7 @@ db.libros.find({}, {titulo: 1, editorial:1, precio:1}).skip(2)
 db.libros.find({}, {titulo:1, editorial:1, precio:1, _id:0}).sort({titulo:-1}).skip(2).size()
 ```
 
-# Borrar colecciones y base de 
+# Borrar colecciones y base de datos 
 ```json
 use db5
 db.createCollection('ejemplo')
@@ -682,6 +682,4 @@ db.ejemplo.drop()
 
 db.dropDatabase()
 ```
-
-
 
