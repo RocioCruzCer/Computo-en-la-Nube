@@ -13,6 +13,8 @@
  ``` json
  {"direccion.pais":"Colombia"}
 ```
+![Resultado](/img/img-practica4/i1.png)
+
 
 - En Mongo Console:
  ```json
@@ -21,12 +23,15 @@
 })
  ```
 
+
 **Personas a las que le guste el color rosa**
 
 - En Mongo Compass:
  ``` json
 {colores: "pink"}
 ```
+![Resultado](/img/img-practica4/i2.png)
+
 
 - En Mongo Console:
  ```json
@@ -41,6 +46,8 @@
  ``` json
 {"colores.2" : "yellow"}
 ```
+![Resultado](/img/img-practica4/i3.png)
+
 
 - En Mongo Console:
  ```json
@@ -58,6 +65,7 @@
     { "direccion.pais": "Mauritania" }
   ]}
 ```
+![Resultado](/img/img-practica4/i4.png)
 
 - En Mongo Console:
  ```json
@@ -76,6 +84,7 @@ db.personas.find({
 {colores:{$all:["silver", "salmon"]}
 }
 ```
+![Resultado](/img/img-practica4/i5.png)
 
 - En Mongo Console:
  ```json
@@ -90,6 +99,7 @@ db.personas.find({
 ```json
 {colores:{$elemMatch:{$eq:"pink",$eq: "red"}}}
 ```
+![Resultado](/img/img-practica4/i6.png)
 
 - En Mongo Console:
  ```json
