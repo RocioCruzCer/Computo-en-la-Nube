@@ -32,6 +32,7 @@ db.libros.countDocuments({
 ```
 3. Seleccionar o mostrar todos los libros mostrando solamente la editorial
 ```json
+db.libros.find({}, {_id:0, editorial:1})
 ```
 
 4. Mostrar todos las distintas editoriales
@@ -170,7 +171,23 @@ db.libros.aggregate(
 
 - Cuantos documentos hay por cada una de las editoriales por número de documentos de manera descendente
 ``` json
-
+[
+  {
+    $group:
+      {
+        _id: "$editorial",
+        "Numero Documentos": {
+          $count: {}
+        }
+      }
+  },
+  {
+    $sort:
+      {
+        editorial: 1
+      }
+  }
+]
 ```
 
 - Utilizando Mongo Atlas Base de datos sample_airbnb
@@ -254,10 +271,6 @@ db.libros.aggregate(
 [
   {
     $group:
-      /**
-       * _id: The id of the group.
-       * fieldN: The first field name.
-       */
       {
         _id: "$property_type",
         Numero: {
@@ -270,10 +283,6 @@ db.libros.aggregate(
   },
   {
     $set:
-      /**
-       * field: The field name
-       * expression: The expression.
-       */
       {
         Media_Total: {
           $trunc: "$Media"
@@ -282,10 +291,6 @@ db.libros.aggregate(
   },
   {
     $unset:
-      /**
-       * Provide the field name to exclude.
-       * To exclude multiple fields, pass the field names in an array.
-       */
       ["Media", "Media_Total"]
   }
 ]
