@@ -342,6 +342,8 @@ db.productos.aggregate(
 ```json
 db.productos2.find()
 ```
+![Resultado](/img/img-practica5/i14.png)
+
 
 **Hacemos un find para comprobar el resultado**
 
@@ -349,6 +351,7 @@ db.productos2.find()
 ```json
 db.productos2.find()
 ```
+![Resultado](/img/img-practica5/i15.png)
 
 
 **Usando $cond y $project vamos a visualizar el nombre del producto, el precio y un campo llamado valoración que ponga “barato” si el precio es menor de 250 y caro si es mayor o igual**
@@ -377,3 +380,4 @@ db.productos2.find()
   }
 ]
 ```
+![Resultado](/img/img-practica5/i16.png)
