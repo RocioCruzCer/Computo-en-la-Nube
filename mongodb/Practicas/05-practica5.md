@@ -6,7 +6,7 @@
 [Colección personas](/mongodb/data/productos.json)
 
 
-3. Debes poner el resultado de las consultas en cada apartado
+3. Debes poner el resultado de![alt text](image.png) las consultas en cada apartado
 
 **Cuenta los productos de tipo “medio”, usando un método básico**
 
@@ -15,10 +15,12 @@
 {tipo: "medio"}
 ```
 
-- En Mongo COnsole
+
+- En Mongo Console
 ```json
 db.productos.countDocuments({tipo: "medio"})
 ```
+![Resultado](/img/img-practica5/i1.png)
 
 **Indicar con un distinct, las empresas (fabricantes) que hay en la colección**
 
@@ -51,6 +53,7 @@ db.productos.aggregate(
     ]
 )
 ```
+![Resultado](/img/img-practica5/i2.png)
 
 **Con $project visualizar solo el nombre, unidades y precio de los productos que tengan menos de 10 unidades**
 
@@ -75,6 +78,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i3.png)
 
 
 **Con $project ponemos el fabricante pero le cambiamos el nombre por “empresa”. Usamos el mismo comando anterior**
@@ -101,6 +105,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i4.png)
 
 
 **Añadir a la consulta anterior un campo calculado que se llame total y que multiplique precio por unidades.**
@@ -130,6 +135,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i5.png)
 
 
 **Hacer que el nombre salga en mayúsculas con el operador $toUpper**
@@ -161,6 +167,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i6.png)
 
 
 
@@ -196,42 +203,38 @@ db.productos.aggregate(
 ]
 
 ```
+![Resultado](/img/img-practica5/i7.png)
 
 **Ordena el resultado por el campo “total”**
 
 - En Mongo Compass
 ```json
- 
-      _id: 0,
-      nombre: {
-        $toUpper: "$nombre"
-      },
-      unidades: 1,
-      precio: 1,
-      Empresa: "$fabricante",
-      Total: {
-        $multiply: ["$precio", "$unidades"]
-      },
-      completo: {
-        $concat: ["$nombre", " - ", "$tipo"]
-      }
+[
+  {
+    "$project": {
+      "_id": 0,
+      "nombre": { "$toUpper": "$nombre" },
+      "unidades": 1,
+      "precio": 1,
+      "Empresa": "$fabricante",
+      "Total": { "$multiply": ["$precio", "$unidades"] },
+      "completo": { "$concat": ["$nombre", " - ", "$tipo"] }
     }
   },
   {
-    $match: {
-      unidades: {
-        $lt: 10
-      }
+    "$match": {
+      "unidades": { "$lt": 10 }
     }
   },
   {
-    $sort:
-      {
-        Total: 1
-      }
+    "$sort": {
+      "Total": 1
+    }
   }
 ]
+
 ```
+![Resultado](/img/img-practica5/i8.png)
 
 
 **Haciendo una nueva consulta, averiguar el numero de productos por tipo de producto**
@@ -249,6 +252,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i9.png)
 
 **Añadir el valor mayor y el menor**  
 
@@ -267,8 +271,8 @@ db.productos.aggregate(
     $sort: { totalProductos: -1 }
   }
 ]
-
 ```
+![Resultado](/img/img-practica5/i10.png)
 
 **Añade el total de unidades por cada tipo**
 
@@ -289,6 +293,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i11.png)
 
 
 
@@ -308,8 +313,8 @@ db.productos.aggregate(
     }
   }
 ]
-
 ```
+![Resultado](/img/img-practica5/i12.png)
 
 
 **Creamos una salida que tenga el nombre del articulo y el total (precio por unidades) y lo guardamos en una colección denominada productos2**
@@ -329,6 +334,7 @@ db.productos.aggregate(
   }
 ]
 ```
+![Resultado](/img/img-practica5/i13.png)
 
 **Comprobamos que se ha creado**
 
@@ -351,7 +357,7 @@ db.productos2.find()
 ```json
 [
   {
-    $project: {
+    $project: {qw
       _id: 0,
       nombre: 1,
       precio: 1,
